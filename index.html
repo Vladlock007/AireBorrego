@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aire Borrego</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      color: #333;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+    }
+    nav h1 {
+      font-size: 1.5rem;
+      color: #16a34a;
+      font-weight: 700;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    nav li {
+      cursor: pointer;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    nav li:hover {
+      color: #16a34a;
+    }
+    section {
+      display: none;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    section.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-top: 1rem;
+    }
+    iframe {
+      border: none;
+      border-radius: 1rem;
+      margin-top: 1rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h1>Aire Borrego</h1>
+    <ul>
+      <li onclick="showSection('inicio')">Inicio</li>
+      <li onclick="showSection('analisis')">Análisis</li>
+      <li onclick="showSection('proposito')">Nuestro Propósito</li>
+    </ul>
+  </nav>
+
+  <!-- Inicio -->
+  <section id="inicio" class="active">
+    <h2>Bienvenido al Visor de Calidad del Aire</h2>
+    <p>
+      Este proyecto escolar busca mostrar cómo varía la calidad del aire en distintas zonas del campus.
+      Aquí encontrarás gráficas, análisis y visualizaciones interactivas.
+    </p>
+  </section>
+
+  <!-- Análisis -->
+  <section id="analisis">
+    <h2>Análisis de Calidad del Aire</h2>
+    <div class="card">
+      <canvas id="grafica"></canvas>
+      <p style="margin-top:1rem; color:#555">Ejemplo de niveles de Amoniaco por zona.</p>
+    </div>
+
+    <div class="card">
+      <h3>Reporte en Power BI</h3>
+      <iframe 
+        title="PowerBI"
+        width="100%"
+        height="400"
+        src="https://app.powerbi.com/view?r=eyJrIjoiZWUwNDdhOGMtMzNjZS00OTgwLWExYWYtNzUzZWJkMzA0YjYwIiwidCI6ImM2NWEzZWE2LTBmN2MtNDAwYi04OTM0LTVhNmRjMTcwNTY0NSIsImMiOjR9"> 
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Propósito -->
+  <section id="proposito">
+    <h2>Nuestro Propósito</h2>
+    <p>
+      El propósito de este proyecto es concientizar sobre la importancia de la calidad del aire.
+      Analizamos los datos recolectados y los presentamos de forma clara para que la sociedad
+      pueda comprender el impacto ambiental en su vida cotidiana.
+    </p>
+  </section>
+
+  <script>
+    // Control de secciones
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    // Gráfica de ejemplo con Chart.js
+    const ctx = document.getElementById("grafica").getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["Aulas", "Areas Verdes", "Estacionamientos", "Laboratorios", "Cafeterias"],
+        datasets: [{
+          label: "Amoniaco",
+          data: [42, 55, 30, 60, 48],
+          borderColor: "#16a34a",
+          backgroundColor: "rgba(22,163,74,0.2)",
+          tension: 0.3,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: true } }
+      }
+    });
+  </script>
+
+</body>
+</html>
