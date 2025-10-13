@@ -1,81 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aire Borrego</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      background-color: #f9fafb;
-      color: #333;
+    :root{
+      --brand:#16a34a;
+      --bg:#f9fafb;
+      --card:#fff;
+      --text:#333;
+      --muted:#555;
+      --shadow:0 2px 6px rgba(0,0,0,.1);
+      --shadow-lg:0 4px 10px rgba(0,0,0,.08);
+      --radius:16px;
+      --container:1100px;
     }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
+    *{box-sizing:border-box}
+    body{
+      font-family:'Inter',system-ui,Arial,sans-serif;
+      margin:0;background:var(--bg);color:var(--text);
     }
-    nav h1 {
-      font-size: 1.5rem;
-      color: #16a34a;
-      font-weight: 700;
+    nav{
+      position:sticky;top:0;z-index:50;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 2rem;background:#fff;box-shadow:var(--shadow);
     }
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
+    nav h1{font-size:1.5rem;color:var(--brand);font-weight:700;margin:0}
+    nav ul{display:flex;list-style:none;gap:1.25rem;margin:0;padding:0}
+    nav li{cursor:pointer;font-weight:600;transition:color .2s}
+    nav li:hover{color:var(--brand)}
+    main{max-width:var(--container);margin:0 auto;padding:1.75rem 1rem}
+    section{display:none}
+    section.active{display:block;animation:fadeIn .45s ease}
+    h2{font-size:2rem;font-weight:700;margin:.25rem 0 1rem}
+    p{line-height:1.6;font-size:1.05rem}
+    .muted{color:var(--muted)}
+    .card{
+      background:var(--card);padding:1.25rem;border-radius:var(--radius);
+      box-shadow:var(--shadow-lg);margin-top:1rem
     }
-    nav li {
-      cursor: pointer;
-      font-weight: 600;
-      transition: color 0.2s;
+    .card h3{margin:0 0 .5rem 0}
+    .button{
+      display:inline-block;margin-top:.75rem;padding:.65rem 1rem;
+      background:var(--brand);color:#fff;text-decoration:none;font-weight:600;
+      border-radius:10px;box-shadow:var(--shadow);transition:transform .08s ease;
     }
-    nav li:hover {
-      color: #16a34a;
-    }
-    section {
-      display: none;
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    section.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-    h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    p {
-      line-height: 1.6;
-      font-size: 1.1rem;
-    }
-    .card {
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      margin-top: 1rem;
-    }
-    iframe {
-      border: none;
-      border-radius: 1rem;
-      margin-top: 1rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .button:hover{transform:translateY(-1px)}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)}}
+    footer{max-width:var(--container);margin:2rem auto 2.5rem;padding:0 1rem;color:#6b7280;font-size:.9rem}
   </style>
 </head>
 <body>
@@ -90,72 +64,65 @@
     </ul>
   </nav>
 
-  <!-- Inicio -->
-  <section id="inicio" class="active">
-    <h2>Bienvenido al Visor de Calidad del Aire</h2>
-    <p>
-      Este proyecto escolar busca mostrar cómo varía la calidad del aire en distintas zonas del campus.
-      Aquí encontrarás gráficas, análisis y visualizaciones interactivas.
-    </p>
-  </section>
+  <main>
+    <!-- Inicio -->
+    <section id="inicio" class="active">
+      <h2>Bienvenido al Visor de Calidad del Aire</h2>
+      <div class="card">
+        <p>
+          Este proyecto escolar muestra cómo varía la calidad del aire en distintas zonas del campus
+          durante el periodo analizado. Encontrarás visualizaciones interactivas, umbrales de referencia
+          y hallazgos clave explicados en lenguaje claro.
+        </p>
+        <p class="muted">
+          Tip: en la sección <b>Análisis</b> abre el dashboard para explorar por <i>Gas</i>, <i>Día</i> y <i>Periodo</i>.
+        </p>
+      </div>
+    </section>
 
-  <!-- Análisis -->
-  <section id="analisis">
-    <h2>Análisis de Calidad del Aire</h2>
-    <div class="card">
-      <canvas id="grafica"></canvas>
-      <p style="margin-top:1rem; color:#555">Ejemplo de niveles de Amoniaco por zona.</p>
-    </div>
+    <!-- Análisis -->
+    <section id="analisis">
+      <h2>Análisis de Calidad del Aire</h2>
 
-    <div class="card">
-      <h3>Reporte en Power BI</h3>
-      <iframe 
-        title="PowerBI"
-        width="100%"
-        height="400"
-        src="https://app.powerbi.com/view?r=eyJrIjoiZWUwNDdhOGMtMzNjZS00OTgwLWExYWYtNzUzZWJkMzA0YjYwIiwidCI6ImM2NWEzZWE2LTBmN2MtNDAwYi04OTM0LTVhNmRjMTcwNTY0NSIsImMiOjR9"> 
-      </iframe>
-    </div>
-  </section>
+      <div class="card">
+        <h3 style="margin:0">Dashboard interactivo</h3>
+        <p>
+          Abre el dashboard completo (barras, heatmap de zonas, KPIs y guía) en otra pestaña.
+          Usa los menús superiores para cambiar <b>Gas</b>, <b>Día</b> y <b>Periodo</b>.
+        </p>
+        <a href="dashboard_sniffer.html" target="_blank" rel="noopener" class="button">Abrir dashboard</a>
+        <p class="muted" style="margin-top:.75rem;">
+          Nota: si necesitas verlo sin internet, genera el archivo con librerías embebidas (offline).
+        </p>
+      </div>
+    </section>
 
-  <!-- Propósito -->
-  <section id="proposito">
-    <h2>Nuestro Propósito</h2>
-    <p>
-      El propósito de este proyecto es concientizar sobre la importancia de la calidad del aire.
-      Analizamos los datos recolectados y los presentamos de forma clara para que la sociedad
-      pueda comprender el impacto ambiental en su vida cotidiana.
-    </p>
-  </section>
+    <!-- Propósito -->
+    <section id="proposito">
+      <h2>Nuestro Propósito</h2>
+      <div class="card">
+        <p>
+          El propósito de este proyecto es concientizar sobre la importancia de la calidad del aire en espacios educativos.
+          Analizamos datos recolectados en distintas zonas y periodos para identificar oportunidades de mejora
+          y proponer acciones simples como ventilación o ajustes operativos.
+        </p>
+        <p class="muted">Los umbrales de referencia ayudan a interpretar los niveles observados como Aceptable, Atención o Alto.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Fuente de datos: mediciones del campus · El dashboard se abre en una pestaña nueva.
+  </footer>
 
   <script>
     // Control de secciones
-    function showSection(id) {
+    function showSection(id){
       document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
+      const el = document.getElementById(id);
+      if (el) el.classList.add("active");
+      window.scrollTo({top:0, behavior:'smooth'});
     }
-
-    // Gráfica de ejemplo con Chart.js
-    const ctx = document.getElementById("grafica").getContext("2d");
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["Aulas", "Areas Verdes", "Estacionamientos", "Laboratorios", "Cafeterias"],
-        datasets: [{
-          label: "Amoniaco",
-          data: [42, 55, 30, 60, 48],
-          borderColor: "#16a34a",
-          backgroundColor: "rgba(22,163,74,0.2)",
-          tension: 0.3,
-          fill: true
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: true } }
-      }
-    });
   </script>
-
 </body>
 </html>
