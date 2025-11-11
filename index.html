@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <div style="display:flex;align-items:center;gap:.75rem;">
+    <a href="https://tec.mx/es?srsltid=AfmBOorMzc_D3Y6-RRj7vze-gr5fCV1F7p5DmqLIqIHIiItns0WZeFwL"><img src="./imagenes/LogoTec.png" alt="Logo del Tecnológico de Monterrey" style="height:40px;"></a>
+  </div>
   <title>Aire Borrego</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --brand:#16a34a;
+      --brand:blue;
       --bg:#f9fafb;
       --card:#fff;
       --text:#333;
@@ -22,6 +25,7 @@
       font-family:'Inter',system-ui,Arial,sans-serif;
       margin:0;background:var(--bg);color:var(--text);
     }
+    img{max-width:100%;display:block}
     nav{
       position:sticky;top:0;z-index:50;
       display:flex;justify-content:space-between;align-items:center;
@@ -50,6 +54,131 @@
     .button:hover{transform:translateY(-1px)}
     @keyframes fadeIn{from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)}}
     footer{max-width:var(--container);margin:2rem auto 2.5rem;padding:0 1rem;color:#6b7280;font-size:.9rem}
+
+    /* === NUEVO: grilla del equipo === */
+    .team-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:1rem;
+      margin-top:.75rem;
+    }
+    .person{
+      background:#fff;border-radius:14px;box-shadow:var(--shadow);
+      overflow:hidden;border:1px solid #eef0f3;
+    }
+    .person .photo{
+      aspect-ratio: 4/3;
+      background:#eef0f3; /* placeholder si no hay foto */
+      display:flex;align-items:center;justify-content:center;
+      font-weight:600;color:#94a3b8;
+    }
+    .person img{width:100%;height:100%;object-fit:cover}
+    .person .meta{padding:.75rem}
+    .person .name{font-weight:700;margin:0 0 .25rem 0}
+    .person .role{color:var(--muted);font-size:.95rem;margin:0}
+
+    /* === NUEVO: galería simple con lightbox === */
+    .gallery{
+      display:grid;gap:1rem;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      margin-top:.75rem;
+    }
+    figure{margin:0}
+    figure img{
+      border-radius:12px;border:1px solid #eef0f3;box-shadow:var(--shadow);
+      cursor:pointer;transition:transform .12s ease;
+    }
+    figure img:hover{transform:scale(1.01)}
+    figcaption{font-size:.95rem;color:var(--muted);margin-top:.5rem}
+
+    /* Lightbox modal */
+    .lightbox{
+      position:fixed;inset:0;background:rgba(0,0,0,.72);
+      display:none;align-items:center;justify-content:center;z-index:1000;
+      padding:1rem;
+    }
+    .lightbox.open{display:flex}
+    .lightbox img{
+      max-width:min(100%,1000px);max-height:85vh;border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,.4);
+      background:#fff;
+    }
+    .lightbox .close{
+      position:absolute;top:12px;right:16px;
+      font-size:1.4rem;background:#fff;border:none;border-radius:999px;
+      padding:.4rem .6rem;cursor:pointer;box-shadow:var(--shadow)
+    }
+    .center {text-align:center}
+
+    /* Ajuste específico para imágenes en Créditos */
+    #creditos .person .photo {
+      aspect-ratio: auto; /* elimina el recorte fijo */
+      background: none;
+    }
+
+    #creditos .person img {
+      object-fit: contain; /* muestra la imagen completa */
+      width: 100%;
+      height: auto;
+      background: #fff; /* fondo neutro para logos con transparencia */
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+    
+    /* === Estilo general unificado para las tarjetas del equipo === */
+    .person {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid #eef0f3;
+      text-align: center;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .person:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Contenedor de la imagen */
+    .person .photo {
+      aspect-ratio: auto;       /* elimina el recorte forzado */
+      background: #fff;         /* fondo neutro (útil para logos con transparencia) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+
+    /* Imagen dentro de la tarjeta */
+    .person .photo img {
+      object-fit: contain;      /* muestra toda la imagen completa */
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    .person .photo img:hover {
+      transform: scale(1.03);   /* pequeño efecto hover */
+    }
+
+    /* Texto debajo de la imagen */
+    .person .meta {
+      padding: 0.75rem;
+    }
+
+    .person .name {
+      font-weight: 700;
+      margin: 0 0 0.25rem 0;
+    }
+
+    .person .role {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -61,6 +190,8 @@
       <li onclick="showSection('inicio')">Inicio</li>
       <li onclick="showSection('analisis')">Análisis</li>
       <li onclick="showSection('proposito')">Nuestro Propósito</li>
+      <li onclick="showSection('creditos')">Créditos</li>          <!-- NUEVO -->
+      <li onclick="showSection('equipo')">Equipo</li>              <!-- NUEVO -->
     </ul>
   </nav>
 
@@ -90,9 +221,9 @@
           Abre el dashboard completo (barras, heatmap de zonas, KPIs y guía) en otra pestaña.
           Usa los menús superiores para cambiar <b>Gas</b>, <b>Día</b> y <b>Periodo</b>.
         </p>
-        <a href="dashboard_sniffer.html" target="_blank" rel="noopener" class="button">Abrir dashboard</a>
+        <a href="dashboard_sniffer.html" target="_self" rel="noopener" class="button">Abrir dashboard</a>
         <p class="muted" style="margin-top:.75rem;">
-          Nota: si necesitas verlo sin internet, genera el archivo con librerías embebidas (offline), las graficas estan pensadas para verlas desde la computadora.
+          Nota: las graficas estan pensadas para verlas desde la computadora.
         </p>
       </div>
     </section>
@@ -109,11 +240,129 @@
         <p class="muted">Los umbrales de referencia ayudan a interpretar los niveles observados como Aceptable, Atención o Alto.</p>
       </div>
     </section>
+
+    <!-- NUEVO: Créditos -->
+    <section id="creditos">
+      <h2>Créditos</h2>
+      <div class="card">
+        <h3 style="margin-top:0">Agradecimientos y colaboración</h3>
+        <p>
+          Agradecimiento y en colaboración de la <b>Universidad Autónoma del Estado de Hidalgo (UAEH)</b>
+          y el <b>Dr. Sócrates López Pérez</b>.
+        </p>
+
+        <div class="team-grid">
+          <!-- Universidad Autónoma del Estado de Hidalgo -->
+          <article class="person">
+            <div class="photo">
+              <img src="./imagenes/uaehLogo.png" alt="Logo de la Universidad Autónoma del Estado de Hidalgo">
+            </div>
+            <div class="meta">
+              <p class="name"><a href="https://www.uaeh.edu.mx/" target="_blank" rel="noopener">Universidad Autónoma del Estado de Hidalgo</a></p>
+              <p class="role">Colaboración institucional</p>
+            </div>
+          </article>
+
+          <!-- Dr. Sócrates López Pérez -->
+          <article class="person">
+            <div class="photo">
+              <img src="./imagenes/Socrates.jpeg" alt="Retrato del Dr. Sócrates López Pérez">
+            </div>
+            <div class="meta">
+              <p class="name"><a href="https://www.uaeh.edu.mx/campus/icshu/nucleo-academico/socrates-lopez.html" target="_blank" rel="noopener">Dr. Sócrates López Pérez</a></p>
+              <p class="role">Colaborador y préstamo del Sniffer4D</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipo & Galería -->
+    <section id="equipo">
+      <h2>Equipo & Galería</h2>
+
+      <!-- Equipo del Tec -->
+      <div class="card">
+        <h3 style="margin-top:0">Equipo de trabajo del Tec</h3>
+        <p class="muted"></p>
+
+        <div class="team-grid">
+          <!-- Persona 1 -->
+          <article class="person">
+            <div class="photo"><img src="./imagenes/Andres.PNG" alt="Retrato del Dr. Andrés David García García"></div>
+            <!-- <img src="img/equipo/andres.jpg" alt="Retrato del Dr. Andrés David García García"> -->
+            <div class="meta">
+              <p class="name">Dr. Andrés David García García</p>
+              <p class="role">Decano de la Escuela de Diseño, Ingeniería y Arquitectura del Tecnológico de Monterrey, Campus Estado de México.</p>
+            </div>
+          </article>
+
+          <!-- Persona 2 -->
+          <article class="person">
+            <div class="photo">
+              <!-- Si ya tienes foto, reemplaza el div por: <img src="./imagenes/" alt="Retrato de la Dra. Brenda García Farrera"> -->
+              <img src="./imagenes/Brenda.jpeg" alt="Retrato de la Dra. Brenda García Farrera">
+            </div>
+            <div class="meta">
+              <p class="name">Dra. Brenda García Farrera</p>
+              <p class="role">Directora de departamento en el Tecnológico de Monterrey, Campus Estado de México.</p>
+            </div>
+          </article>
+
+          <!-- Persona 3 -->
+          <article class="person">
+            <div class="photo"><img src="./imagenes/Karthik.jpeg" alt="Retrato del Dr. Venkata Krishna Karthik Tangirala"></div>
+            <!-- <img src="img/equipo/karthik.jpg" alt="Retrato del Dr. Venkata Krishna Karthik Tangirala"> -->
+            <div class="meta">
+              <p class="name">Dr. Venkata Krishna Karthik Tangirala</p>
+              <p class="role">Profesor en el Tecnológico de Monterrey, Campus Estado de México.</p>
+            </div>
+          </article>
+
+          <!-- Persona 4 -->
+          <article class="person">
+            <div class="photo"><img src="./imagenes/SaulA.jpg" alt="Retrato de Saúl Alfredo Nieto Becerril"></div>
+            <!-- <img src="img/equipo/saul.jpg" alt="Retrato de Saúl Alfredo Nieto Becerril"> -->
+            <div class="meta">
+              <p class="name">Saúl Alfredo Nieto Becerril</p>
+              <p class="role">Estudiante de Ingeniería en Ciencias de Datos y Matemáticas</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Galería / Dispositivo -->
+      <div class="card">
+        <h3 style="margin-top:0">Equipo de medición</h3>
+        <div class="gallery">
+          <figure>
+            <img src="./imagenes/sniffer4d.jpeg" alt="Fotografía del dispositivo Sniffer4D utilizado en las mediciones" onclick="openLightbox(this)">
+            <figcaption>
+              Dispositivo de muestreo: <b>Sniffer4D</b><br>
+              Utilizado para la recolección de datos de gases en tiempo real.
+            </figcaption>
+          </figure>
+        </div>
+
+        <p style="margin-top:0.75rem; text-align:justify;">
+          El <b>Sniffer4D</b> es un sistema portátil de monitoreo ambiental que permite medir concentraciones
+          de contaminantes atmosféricos como CO₂, CO, NO₂ y PM₂.5, entre otros. 
+          En este proyecto se utilizó para registrar la calidad del aire en distintas zonas del campus,
+          durante diferentes periodos del día.
+        </p>
+      </div>
+    </section>
   </main>
 
   <footer>
     Fuente de datos: mediciones del campus · El dashboard se abre en una pestaña nueva.
   </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Visor de imagen">
+    <button class="close" aria-label="Cerrar" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" alt="">
+  </div>
 
   <script>
     // Control de secciones
@@ -123,6 +372,30 @@
       if (el) el.classList.add("active");
       window.scrollTo({top:0, behavior:'smooth'});
     }
+
+    // Lightbox simple
+    function openLightbox(imgEl){
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      lbImg.src = imgEl.src;
+      lbImg.alt = imgEl.alt || 'Imagen ampliada';
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+    }
+    function closeLightbox(){
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      lbImg.src = '';
+    }
+    // Cierra con fondo o tecla ESC
+    document.getElementById('lightbox').addEventListener('click', (e)=>{
+      if(e.target.id === 'lightbox') closeLightbox();
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeLightbox();
+    });
   </script>
 </body>
 </html>
