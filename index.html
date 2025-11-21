@@ -244,21 +244,44 @@
     <!-- NUEVO: Créditos -->
     <section id="creditos">
       <h2>Créditos</h2>
+
       <div class="card">
-        <h3 style="margin-top:0">Agradecimientos y colaboración</h3>
-        <p>
-          Agradecimiento y en colaboración de la <b>Universidad Autónoma del Estado de Hidalgo (UAEH)</b>
-          y el <b>Dr. Sócrates López Pérez</b>.
+        <h3 style="margin-top:0">Agradecimientos y colaboración institucional</h3>
+        <p style="text-align:justify;">
+          Este proyecto contó con la participación, apoyo y acompañamiento académico del 
+          <b>Tecnológico de Monterrey</b> y la <b>Universidad Autónoma del Estado de Hidalgo (UAEH)</b>, 
+          así como la colaboración del <b>Dr. Sócrates López Pérez</b> en la facilitación del equipo 
+          de medición <i>Sniffer4D</i>.
         </p>
 
         <div class="team-grid">
+
+          <!-- Logo del Tecnológico de Monterrey -->
+          <article class="person">
+            <div class="photo">
+              <img src="./imagenes/Logotec2.png" alt="Logo del Tecnológico de Monterrey">
+            </div>
+            <div class="meta">
+              <p class="name">
+                <a href="https://tec.mx" target="_blank" rel="noopener">
+                  Tecnológico de Monterrey
+                </a>
+              </p>
+              <p class="role">Institución académica • Campus Estado de México</p>
+            </div>
+          </article>
+
           <!-- Universidad Autónoma del Estado de Hidalgo -->
           <article class="person">
             <div class="photo">
               <img src="./imagenes/uaehLogo.png" alt="Logo de la Universidad Autónoma del Estado de Hidalgo">
             </div>
             <div class="meta">
-              <p class="name"><a href="https://www.uaeh.edu.mx/" target="_blank" rel="noopener">Universidad Autónoma del Estado de Hidalgo</a></p>
+              <p class="name">
+                <a href="https://www.uaeh.edu.mx/" target="_blank" rel="noopener">
+                  Universidad Autónoma del Estado de Hidalgo
+                </a>
+              </p>
               <p class="role">Colaboración institucional</p>
             </div>
           </article>
@@ -269,89 +292,173 @@
               <img src="./imagenes/Socrates.jpeg" alt="Retrato del Dr. Sócrates López Pérez">
             </div>
             <div class="meta">
-              <p class="name"><a href="https://www.uaeh.edu.mx/campus/icshu/nucleo-academico/socrates-lopez.html" target="_blank" rel="noopener">Dr. Sócrates López Pérez</a></p>
+              <p class="name">
+                <a href="https://www.uaeh.edu.mx/campus/icshu/nucleo-academico/socrates-lopez.html"
+                  target="_blank" rel="noopener">
+                  Dr. Sócrates López Pérez
+                </a>
+              </p>
               <p class="role">Colaborador y préstamo del Sniffer4D</p>
             </div>
           </article>
+
         </div>
       </div>
     </section>
+
 
     <!-- Equipo & Galería -->
     <section id="equipo">
-      <h2>Equipo & Galería</h2>
+  <h2>Iniciativa · Aire Borrego</h2>
 
-      <!-- Equipo del Tec -->
-      <div class="card">
-        <h3 style="margin-top:0">Equipo de trabajo del Tec</h3>
-        <p class="muted"></p>
+  <!-- Introducción de la Iniciativa -->
+  <div class="card">
+      <h3 style="margin-top:0">Presentación de la iniciativa</h3>
+      <p style="text-align:justify;">
+        <b>Aire Borrego</b> es una iniciativa interdisciplinaria del Tecnológico de Monterrey que integra 
+        mediciones en tiempo real, análisis de datos y visualización interactiva para comprender la 
+        calidad del aire en el campus. Su propósito es promover ambientes más saludables, generar 
+        conciencia sobre los contaminantes atmosféricos y fomentar la toma de decisiones informadas 
+        para el bienestar de la comunidad estudiantil.
+      </p>
+    </div>
 
-        <div class="team-grid">
-          <!-- Persona 1 -->
-          <article class="person">
-            <div class="photo"><img src="./imagenes/Andres.PNG" alt="Retrato del Dr. Andrés David García García"></div>
-            <!-- <img src="img/equipo/andres.jpg" alt="Retrato del Dr. Andrés David García García"> -->
-            <div class="meta">
-              <p class="name">Dr. Andrés David García García</p>
-              <p class="role">Decano de la Escuela de Diseño, Ingeniería y Arquitectura del Tecnológico de Monterrey, Campus Estado de México.</p>
-            </div>
-          </article>
+    <!-- Objetivo -->
+    <div class="card">
+      <h3 style="margin-top:0">Objetivo general</h3>
+      <p style="text-align:justify;">
+        Evaluar y comunicar de manera clara la variación de la calidad del aire en distintas zonas del 
+        campus a través de la recolección de datos con el sistema <b>Sniffer4D</b>, su análisis mediante 
+        herramientas de ciencias de datos y el desarrollo de un visor digital accesible para la 
+        comunidad universitaria.
+      </p>
+    </div>
 
-          <!-- Persona 2 -->
-          <article class="person">
-            <div class="photo">
-              <!-- Si ya tienes foto, reemplaza el div por: <img src="./imagenes/" alt="Retrato de la Dra. Brenda García Farrera"> -->
-              <img src="./imagenes/Brenda.jpeg" alt="Retrato de la Dra. Brenda García Farrera">
-            </div>
-            <div class="meta">
-              <p class="name">Dra. Brenda García Farrera</p>
-              <p class="role">Directora de departamento en el Tecnológico de Monterrey, Campus Estado de México.</p>
-            </div>
-          </article>
+    <!-- Alcance -->
+    <div class="card">
+      <h3 style="margin-top:0">Alcance del proyecto</h3>
+      <ul style="line-height:1.7; text-align:justify; margin-left:1rem;">
+        <li>Mediciones de CO₂, CO, NO₂ y PM₂.5 en distintos puntos del campus.</li>
+        <li>Registro en diferentes horarios y periodos académicos para observar variabilidad temporal.</li>
+        <li>Procesamiento de datos, limpieza y normalización mediante herramientas analíticas.</li>
+        <li>Construcción de un dashboard interactivo para facilitar la consulta de los resultados.</li>
+        <li>Difusión de hallazgos y recomendaciones mediante una página informativa accesible.</li>
+      </ul>
+    </div>
 
-          <!-- Persona 3 -->
-          <article class="person">
-            <div class="photo"><img src="./imagenes/Karthik.jpeg" alt="Retrato del Dr. Venkata Krishna Karthik Tangirala"></div>
-            <!-- <img src="img/equipo/karthik.jpg" alt="Retrato del Dr. Venkata Krishna Karthik Tangirala"> -->
-            <div class="meta">
-              <p class="name">Dr. Venkata Krishna Karthik Tangirala</p>
-              <p class="role">Profesor en el Tecnológico de Monterrey, Campus Estado de México.</p>
-            </div>
-          </article>
+    <!-- Actividades realizadas -->
+    <div class="card">
+      <h3 style="margin-top:0">Actividades realizadas</h3>
+      <ul style="line-height:1.7; text-align:justify; margin-left:1rem;">
+        <li>Diseño del plan de muestreo y rutas dentro del campus.</li>
+        <li>Recolección de datos utilizando el dispositivo <b>Sniffer4D</b>.</li>
+        <li>Procesamiento, filtrado y segmentación de datos por zonas, periodos y contaminantes.</li>
+        <li>Desarrollo del visor web y dashboard interactivo.</li>
+        <li>Interpretación de hallazgos y elaboración de mensajes clave de impacto ambiental.</li>
+      </ul>
+    </div>
 
-          <!-- Persona 4 -->
-          <article class="person">
-            <div class="photo"><img src="./imagenes/SaulA.jpg" alt="Retrato de Saúl Alfredo Nieto Becerril"></div>
-            <!-- <img src="img/equipo/saul.jpg" alt="Retrato de Saúl Alfredo Nieto Becerril"> -->
-            <div class="meta">
-              <p class="name">Saúl Alfredo Nieto Becerril</p>
-              <p class="role">Estudiante de Ingeniería en Ciencias de Datos y Matemáticas</p>
-            </div>
-          </article>
-        </div>
+    <!-- Resultados -->
+    <div class="card">
+      <h3 style="margin-top:0">Resultados y hallazgos iniciales</h3>
+      <p style="text-align:justify;">
+        Las mediciones registradas muestran patrones identificables asociados a horarios de mayor 
+        actividad dentro del campus, así como diferencias notables entre zonas abiertas, áreas 
+        cerradas y puntos de alta afluencia estudiantil. Estos hallazgos permiten identificar 
+        oportunidades de mejora, como reforzar la ventilación en ciertas áreas, promover 
+        actividades al aire libre o considerar ajustes operativos en zonas con picos de concentración.
+      </p>
+    </div>
+
+    <!-- Equipo -->
+    <div class="card">
+      <h3 style="margin-top:0">Equipo de trabajo del Tecnológico de Monterrey</h3>
+      <p class="muted">
+        Coordinación, asesoría académica, análisis de datos y desarrollo del visor.
+      </p>
+
+      <div class="team-grid">
+
+        <!-- Persona 1 -->
+        <article class="person">
+          <div class="photo">
+            <img src="./imagenes/Andres.PNG" alt="Retrato del Dr. Andrés David García García">
+          </div>
+          <div class="meta">
+            <p class="name">Dr. Andrés David García García</p>
+            <p class="role">
+              Decano de la Escuela de Diseño, Ingeniería y Arquitectura.<br>
+              Campus Estado de México.
+            </p>
+          </div>
+        </article>
+
+        <!-- Persona 2 -->
+        <article class="person">
+          <div class="photo">
+            <img src="./imagenes/Brenda.png" alt="Retrato de la Dra. Brenda García Farrera">
+          </div>
+          <div class="meta">
+            <p class="name">Dra. Brenda García Farrera</p>
+            <p class="role">
+              Directora de Departamento de Ingeniería.<br>
+              Campus Estado de México.
+            </p>
+          </div>
+        </article>
+
+        <!-- Persona 3 -->
+        <article class="person">
+          <div class="photo">
+            <img src="./imagenes/Karthik.jpg" alt="Retrato del Dr. Venkata Krishna Karthik Tangirala">
+          </div>
+          <div class="meta">
+            <p class="name">Dr. Venkata Krishna Karthik Tangirala</p>
+            <p class="role">
+              Profesor Investigador y Asesor principal del proyecto.<br>
+              Campus Estado de México.
+            </p>
+          </div>
+        </article>
+
+        <!-- Persona 4 -->
+        <article class="person">
+          <div class="photo">
+            <img src="./imagenes/SaulA.jpg" alt="Retrato de Saúl Alfredo Nieto Becerril">
+          </div>
+          <div class="meta">
+            <p class="name">Saúl Alfredo Nieto Becerril</p>
+            <p class="role">
+              Estudiante de Ingeniería en Ciencias de Datos y Matemáticas.<br>
+              Responsable de análisis, visualización y desarrollo del visor.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Equipo de medición -->
+    <div class="card">
+      <h3 style="margin-top:0">Equipo de medición</h3>
+
+      <div class="gallery">
+        <figure>
+          <img src="./imagenes/sniffer4d.jpeg" alt="Fotografía del dispositivo Sniffer4D utilizado en las mediciones" onclick="openLightbox(this)">
+          <figcaption class="center">
+            <b>Sniffer4D</b> — Sistema portátil de monitoreo para mediciones de gases en tiempo real.
+          </figcaption>
+        </figure>
       </div>
 
-      <!-- Galería / Dispositivo -->
-      <div class="card">
-        <h3 style="margin-top:0">Equipo de medición</h3>
-        <div class="gallery">
-          <figure>
-            <img src="./imagenes/sniffer4d.jpeg" alt="Fotografía del dispositivo Sniffer4D utilizado en las mediciones" onclick="openLightbox(this)">
-            <figcaption>
-              Dispositivo de muestreo: <b>Sniffer4D</b><br>
-              Utilizado para la recolección de datos de gases en tiempo real.
-            </figcaption>
-          </figure>
-        </div>
-
-        <p style="margin-top:0.75rem; text-align:justify;">
-          El <b>Sniffer4D</b> es un sistema portátil de monitoreo ambiental que permite medir concentraciones
-          de contaminantes atmosféricos como CO₂, CO, NO₂ y PM₂.5, entre otros. 
-          En este proyecto se utilizó para registrar la calidad del aire en distintas zonas del campus,
-          durante diferentes periodos del día.
-        </p>
-      </div>
-    </section>
+      <p style="margin-top:.75rem; text-align:justify;">
+        Este dispositivo permitió registrar variaciones de contaminantes atmosféricos como CO₂, 
+        CO, NO₂ y PM₂.5 en recorridos por distintas zonas del campus. Su precisión y capacidad 
+        de registro continuo lo convierten en una herramienta ideal para estudios ambientales 
+        dentro de espacios educativos.
+      </p>
+    </div>
+  </section>
   </main>
 
   <footer>
