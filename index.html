@@ -187,10 +187,14 @@
     <!-- Inicio -->
     <section id="inicio" class="active">
       <h2>Bienvenido al Visor de Calidad del Aire</h2>
-      <div class="card">
+      <div class="card">  
         <p>
-          Este proyecto muestra cómo varía la calidad del aire en distintas zonas del campus
-          mediante mediciones del dispositivo Sniffer4D.
+          Este proyecto escolar muestra cómo varía la calidad del aire en distintas zonas del campus
+          durante el periodo analizado. Encontrarás visualizaciones interactivas, umbrales de referencia
+          y hallazgos clave explicados en lenguaje claro.
+        </p>
+        <p class="muted">
+          Tip: en la sección <b>Análisis</b> abre el dashboard para explorar por <i>Gas</i>, <i>Día</i> y <i>Periodo</i>.
         </p>
       </div>
     </section>
@@ -198,10 +202,17 @@
     <!-- Análisis -->
     <section id="analisis">
       <h2>Análisis de Calidad del Aire</h2>
+
       <div class="card">
-        <h3>Dashboard interactivo</h3>
-        <p>Explora el tablero visual completo.</p>
-        <a href="dashboard_sniffer.html" class="button">Abrir dashboard</a>
+        <h3 style="margin:0">Dashboard interactivo</h3>
+        <p>
+          Abre el dashboard completo (barras, heatmap de zonas, KPIs y guía) en otra pestaña.
+          Usa los menús superiores para cambiar <b>Gas</b>, <b>Día</b> y <b>Periodo</b>.
+        </p>
+        <a href="dashboard_sniffer.html" target="_self" rel="noopener" class="button">Abrir dashboard</a>
+        <p class="muted" style="margin-top:.75rem;">
+          Nota: las graficas estan pensadas para verlas desde la computadora.
+        </p>
       </div>
     </section>
 
@@ -210,9 +221,11 @@
       <h2>Nuestro Propósito</h2>
       <div class="card">
         <p>
-          Este proyecto busca concientizar sobre la importancia de la calidad del aire en espacios académicos,
-          facilitando datos claros y análisis intuitivo.
+          El propósito de este proyecto es concientizar sobre la importancia de la calidad del aire en espacios educativos.
+          Analizamos datos recolectados en distintas zonas y periodos para identificar oportunidades de mejora
+          y proponer acciones simples como ventilación o ajustes operativos.
         </p>
+        <p class="muted">Los umbrales de referencia ayudan a interpretar los niveles observados como Aceptable, Atención o Alto.</p>
       </div>
     </section>
 
@@ -221,43 +234,59 @@
       <h2>Créditos</h2>
 
       <div class="card">
-        <h3>Agradecimientos y colaboración institucional</h3>
-        <p>
-          Este proyecto fue realizado con el apoyo del Tecnológico de Monterrey y la Universidad Autónoma del Estado de Hidalgo.
+        <h3 style="margin-top:0">Agradecimientos y colaboración institucional</h3>
+        <p style="text-align:justify;">
+          Este proyecto contó con la participación, apoyo y acompañamiento académico del 
+          <b>Tecnológico de Monterrey</b> y la <b>Universidad Autónoma del Estado de Hidalgo (UAEH)</b>, 
+          así como la colaboración del <b>Dr. Sócrates López Pérez</b> en la facilitación del equipo 
+          de medición <i>Sniffer4D</i>.
         </p>
 
         <div class="team-grid">
 
-          <!-- Tec -->
+          <!-- Logo del Tecnológico de Monterrey -->
           <article class="person">
             <div class="photo">
-              <img src="./imagenes/Logotec2.png" alt="Logo Tec">
+              <img src="./imagenes/Logotec2.png" alt="Logo del Tecnológico de Monterrey">
             </div>
             <div class="meta">
-              <p class="name"><a href="https://tec.mx">Tecnológico de Monterrey</a></p>
-              <p class="role">Campus Estado de México</p>
+              <p class="name">
+                <a href="https://tec.mx" target="_blank" rel="noopener">
+                  Tecnológico de Monterrey
+                </a>
+              </p>
+              <p class="role">Institución académica • Campus Estado de México</p>
             </div>
           </article>
 
-          <!-- UAEH -->
+          <!-- Universidad Autónoma del Estado de Hidalgo -->
           <article class="person">
             <div class="photo">
-              <img src="./imagenes/uaehLogo.png" alt="UAEH">
+              <img src="./imagenes/uaehLogo.png" alt="Logo de la Universidad Autónoma del Estado de Hidalgo">
             </div>
             <div class="meta">
-              <p class="name"><a href="https://uaeh.edu.mx">UAEH</a></p>
+              <p class="name">
+                <a href="https://www.uaeh.edu.mx/" target="_blank" rel="noopener">
+                  Universidad Autónoma del Estado de Hidalgo
+                </a>
+              </p>
               <p class="role">Colaboración institucional</p>
             </div>
           </article>
 
-          <!-- Dr Sócrates -->
+          <!-- Dr. Sócrates López Pérez -->
           <article class="person">
             <div class="photo">
-              <img src="./imagenes/Socrates.jpeg" alt="Dr. Sócrates López Pérez">
+              <img src="./imagenes/Socrates.jpeg" alt="Retrato del Dr. Sócrates López Pérez">
             </div>
             <div class="meta">
-              <p class="name">Dr. Sócrates López Pérez</p>
-              <p class="role">Préstamo del Sniffer4D</p>
+              <p class="name">
+                <a href="https://www.uaeh.edu.mx/campus/icshu/nucleo-academico/socrates-lopez.html"
+                  target="_blank" rel="noopener">
+                  Dr. Sócrates López Pérez
+                </a>
+              </p>
+              <p class="role">Colaborador y préstamo del Sniffer4D</p>
             </div>
           </article>
 
@@ -393,17 +422,26 @@
         </article>
       </div>
     </div>
+    </section>
     <!-- EQUIPO -->
     <section id="equipo">
+      <h2 style="margin-top:0">Equipo de medición</h2>
+
       <div class="card">
-        <h3>Equipo de medición</h3>
-        <div class="gallery">
-          <figure>
-            <img src="./imagenes/sniffer4d.jpeg" onclick="openLightbox(this)">
-            <figcaption>Sniffer4D — medición de contaminantes</figcaption>
-          </figure>
-          <p>Este dispositivo permitió registrar variaciones de contaminantes atmosféricos como CO₂, CO, NO₂ y PM₂.5 en recorridos por distintas zonas del campus. Su precisión y capacidad de registro continuo lo convierten en una herramienta ideal para estudios ambientales dentro de espacios educativos.</p>
-        </div>
+        <figure>
+          <img src="./imagenes/sniffer4d.jpeg" alt="Fotografía del dispositivo Sniffer4D utilizado en las mediciones" onclick="openLightbox(this)">
+          <figcaption class="center">
+            <b>Sniffer4D</b> — Sistema portátil de monitoreo para mediciones de gases en tiempo real.
+          </figcaption>
+        </figure>
+      
+
+      <p style="margin-top:.75rem; text-align:justify;">
+        Este dispositivo permitió registrar variaciones de contaminantes atmosféricos como CO₂, 
+        CO, NO₂ y PM₂.5 en recorridos por distintas zonas del campus. Su precisión y capacidad 
+        de registro continuo lo convierten en una herramienta ideal para estudios ambientales 
+        dentro de espacios educativos.
+      </p>
       </div>
     </section>
 
