@@ -45,7 +45,7 @@
     }
     nav li:hover{color:var(--brand)}
 
-    /* HAMBURGER (Móvil) */
+    /* HAMBURGER MENU */
     .hamburger{
       display:none;
       cursor:pointer;
@@ -131,8 +131,6 @@
       box-shadow:var(--shadow);cursor:pointer;
       transition:transform .12s ease;
     }
-    figure img:hover{transform:scale(1.01)}
-    figcaption{font-size:.95rem;color:var(--muted);margin-top:.5rem;text-align:center;}
 
     /* LIGHTBOX */
     .lightbox{
@@ -146,56 +144,30 @@
       background:#fff;
       box-shadow:0 10px 30px rgba(0,0,0,.4);
     }
+
     .close{
       position:absolute;top:12px;right:16px;font-size:1.4rem;
       background:#fff;border:none;border-radius:999px;
       padding:.4rem .6rem;cursor:pointer;box-shadow:var(--shadow);
     }
 
-    /* RESPONSIVE =====================================*/
-
-    /* PC grande */
-    @media(min-width:1024px){
-      h2{font-size:2.2rem;}
-      .card{padding:2rem;}
-    }
-
-    /* TABLETS */
-    @media(max-width:1023px){
-      .team-grid{grid-template-columns:repeat(2,1fr);}
-    }
-
+    /* RESPONSIVE */
     @media(max-width:768px){
-      nav{flex-wrap:wrap;}
       .hamburger{display:flex;}
-      nav ul{
-        width:100%;flex-direction:column;align-items:center;
-        display:none;margin-top:.5rem;
-      }
+      nav ul{display:none;width:100%;flex-direction:column;align-items:center;margin-top:.7rem;}
       nav ul.open{display:flex;}
       .team-grid{grid-template-columns:1fr;}
     }
 
-    /* CELULAR */
-    @media(max-width:599px){
-      h2{font-size:1.6rem;}
-      nav h1{font-size:1.3rem;}
-      nav ul li{font-size:1rem;}
-    }
-
-    @media(max-width:420px){
-      nav h1{font-size:1.2rem;}
-      nav ul li{font-size:.9rem;}
-    }
   </style>
 </head>
 
 <body>
 
+  <!-- NAV -->
   <nav>
     <h1>Aire Borrego</h1>
 
-    <!-- Botón hamburguesa -->
     <button class="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -205,6 +177,7 @@
       <li onclick="showSection('analisis')">Análisis</li>
       <li onclick="showSection('proposito')">Propósito</li>
       <li onclick="showSection('creditos')">Créditos</li>
+      <li onclick="showSection('iniciativa')">Iniciativa</li>
       <li onclick="showSection('equipo')">Equipo</li>
     </ul>
   </nav>
@@ -216,10 +189,8 @@
       <h2>Bienvenido al Visor de Calidad del Aire</h2>
       <div class="card">
         <p>
-          Este proyecto escolar muestra cómo varía la calidad del aire en distintas zonas del campus.
-        </p>
-        <p class="muted">
-          Tip: en la sección <b>Análisis</b> puedes explorar todo el dashboard interactivo.
+          Este proyecto muestra cómo varía la calidad del aire en distintas zonas del campus
+          mediante mediciones del dispositivo Sniffer4D.
         </p>
       </div>
     </section>
@@ -229,9 +200,7 @@
       <h2>Análisis de Calidad del Aire</h2>
       <div class="card">
         <h3>Dashboard interactivo</h3>
-        <p>
-          Visualiza la información completa en el tablero dinámico.
-        </p>
+        <p>Explora el tablero visual completo.</p>
         <a href="dashboard_sniffer.html" class="button">Abrir dashboard</a>
       </div>
     </section>
@@ -241,7 +210,8 @@
       <h2>Nuestro Propósito</h2>
       <div class="card">
         <p>
-          El objetivo de este proyecto es concientizar sobre la importancia de la calidad del aire…
+          Este proyecto busca concientizar sobre la importancia de la calidad del aire en espacios académicos,
+          facilitando datos claros y análisis intuitivo.
         </p>
       </div>
     </section>
@@ -253,7 +223,7 @@
       <div class="card">
         <h3>Agradecimientos y colaboración institucional</h3>
         <p>
-          Proyecto realizado con apoyo del Tecnológico de Monterrey y la UAEH.
+          Este proyecto fue realizado con el apoyo del Tecnológico de Monterrey y la Universidad Autónoma del Estado de Hidalgo.
         </p>
 
         <div class="team-grid">
@@ -287,37 +257,40 @@
             </div>
             <div class="meta">
               <p class="name">Dr. Sócrates López Pérez</p>
-              <p class="role">Colaborador — Préstamo del Sniffer4D</p>
+              <p class="role">Préstamo del Sniffer4D</p>
             </div>
           </article>
+
         </div>
       </div>
     </section>
 
-    <!-- EQUIPO COMPLETO -->
-    <section id="equipo">
+    <!-- SECCIÓN NUEVA: INICIATIVA -->
+    <section id="iniciativa">
       <h2>Iniciativa · Aire Borrego</h2>
 
       <div class="card">
         <h3>Presentación de la iniciativa</h3>
         <p>
-          Aire Borrego es un proyecto interdisciplinario enfocado en el análisis de la calidad del aire.
+          Aire Borrego es un proyecto interdisciplinario que combina ciencia de datos, sostenibilidad
+          y tecnología para analizar la calidad del aire del campus.
         </p>
       </div>
 
       <div class="card">
         <h3>Objetivo general</h3>
         <p>
-          Evaluar y comunicar la variación de la calidad del aire en el campus utilizando Sniffer4D.
+          Evaluar, visualizar y comunicar la variación de la calidad del aire en el campus.
         </p>
       </div>
 
       <div class="card">
         <h3>Alcance</h3>
         <ul>
-          <li>Mediciones en distintas zonas del campus.</li>
-          <li>Registro en diferentes periodos académicos.</li>
-          <li>Dashboard interactivo para consulta pública.</li>
+          <li>Mediciones ambientales con Sniffer4D.</li>
+          <li>Registro en distintos periodos del año.</li>
+          <li>Dashboard visual interactivo.</li>
+          <li>Comunicación de hallazgos.</li>
         </ul>
       </div>
 
@@ -325,44 +298,61 @@
         <h3>Actividades realizadas</h3>
         <ul>
           <li>Plan de muestreo.</li>
-          <li>Recolección y análisis de datos.</li>
-          <li>Desarrollo de la plataforma digital.</li>
+          <li>Recolección de datos.</li>
+          <li>Limpieza y análisis.</li>
+          <li>Construcción del visor web.</li>
         </ul>
       </div>
 
       <div class="card">
         <h3>Resultados iniciales</h3>
         <p>
-          Se observaron diferencias claras de contaminantes según horarios y zonas.
+          Se detectaron variaciones claras según zonas, horarios y condiciones ambientales.
         </p>
       </div>
+      <h2>Equipo del Tecnológico de Monterrey</h2>
 
       <div class="card">
-        <h3>Equipo del Tecnológico de Monterrey</h3>
-
         <div class="team-grid">
+
           <article class="person">
             <div class="photo"><img src="./imagenes/Andres.PNG"></div>
-            <div class="meta"><p class="name">Dr. Andrés García</p><p class="role">Decano</p></div>
+            <div class="meta">
+              <p class="name">Dr. Andrés García</p>
+              <p class="role">Decano</p>
+            </div>
           </article>
 
           <article class="person">
             <div class="photo"><img src="./imagenes/Brenda.png"></div>
-            <div class="meta"><p class="name">Dra. Brenda García</p><p class="role">Directora</p></div>
+            <div class="meta">
+              <p class="name">Dra. Brenda García</p>
+              <p class="role">Directora</p>
+            </div>
           </article>
 
           <article class="person">
             <div class="photo"><img src="./imagenes/Karthik.jpg"></div>
-            <div class="meta"><p class="name">Dr. Karthik Tangirala</p><p class="role">Profesor asesor</p></div>
+            <div class="meta">
+              <p class="name">Dr. Karthik Tangirala</p>
+              <p class="role">Profesor asesor</p>
+            </div>
           </article>
 
           <article class="person">
             <div class="photo"><img src="./imagenes/SaulA.jpg"></div>
-            <div class="meta"><p class="name">Saúl Alfredo Nieto</p><p class="role">Estudiante — Análisis y dashboard</p></div>
+            <div class="meta">
+              <p class="name">Saúl Alfredo Nieto</p>
+              <p class="role">Estudiante · Análisis & Dashboard</p>
+            </div>
           </article>
+
         </div>
       </div>
+    </section>
 
+    <!-- EQUIPO -->
+    <section id="equipo">
       <div class="card">
         <h3>Equipo de medición</h3>
         <div class="gallery">
@@ -370,15 +360,15 @@
             <img src="./imagenes/sniffer4d.jpeg" onclick="openLightbox(this)">
             <figcaption>Sniffer4D — medición de contaminantes</figcaption>
           </figure>
+          <p>Este dispositivo permitió registrar variaciones de contaminantes atmosféricos como CO₂, CO, NO₂ y PM₂.5 en recorridos por distintas zonas del campus. Su precisión y capacidad de registro continuo lo convierten en una herramienta ideal para estudios ambientales dentro de espacios educativos.</p>
         </div>
       </div>
-
     </section>
 
   </main>
 
   <footer>
-    Fuente de datos: Sniffer4D · Proyecto educativo del Campus CEM.
+    Fuente de datos: Sniffer4D · Proyecto académico del Tecnológico de Monterrey.
   </footer>
 
   <!-- LIGHTBOX -->
@@ -388,31 +378,31 @@
   </div>
 
   <script>
-
-    // Cambiar secciones
-    function showSection(id){
-      document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-
-    // Hamburguesa
+    /* Menú hamburguesa */
     function toggleMenu(){
       document.querySelector('.hamburger').classList.toggle('active');
       document.getElementById('main-menu').classList.toggle('open');
     }
 
-    // Lightbox
-    function openLightbox(img){
-      const lb = document.getElementById('lightbox');
-      const lbImg = document.getElementById('lightbox-img');
-      lbImg.src = img.src;
-      lb.classList.add('open');
+    /* Cambiar sección */
+    function showSection(id){
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      window.scrollTo({top:0, behavior:'smooth'});
+      document.getElementById('main-menu').classList.remove('open');
+      document.querySelector('.hamburger').classList.remove('active');
     }
 
+    /* Lightbox */
+    function openLightbox(img){
+      const lb=document.getElementById('lightbox');
+      const lbImg=document.getElementById('lightbox-img');
+      lbImg.src=img.src;
+      lb.classList.add('open');
+    }
     function closeLightbox(){
       document.getElementById('lightbox').classList.remove('open');
-      document.getElementById('lightbox-img').src = "";
+      document.getElementById('lightbox-img').src="";
     }
   </script>
 
