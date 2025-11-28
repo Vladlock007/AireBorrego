@@ -8,8 +8,11 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
+
 <style>
-/* VARIABLES */
+/* =========================================================
+   VARIABLES
+========================================================= */
 :root{
   --brand:#0047bb;
   --brand-dark:#003b9c;
@@ -23,27 +26,27 @@
   --container:1400px;
 }
 
-/* DARK MODE AUTOMÁTICO */
+/* =========================================================
+   DARK MODE AUTOMÁTICO
+========================================================= */
 @media (prefers-color-scheme: dark) {
   :root{
     --bg:#0d1117;
     --card:#161b22;
     --text:#e6edf3;
     --muted:#9ba7b5;
-    --shadow:0 0 0 rgba(0,0,0,0);
-    --shadow-lg:0 0 0 rgba(0,0,0,0);
   }
 
   #sidebar{ background:#161b22; }
   #sidebar .menu li{ background:#161b22; color:#ddd; }
   #sidebar .menu li.active{ background:var(--brand); color:#fff; }
 
-  .card{
-    border:1px solid #1f2630;
-  }
+  .card{ border:1px solid #1f2630; }
 }
 
-/* GENERAL */
+/* =========================================================
+   BASE
+========================================================= */
 *{box-sizing:border-box;}
 body{
   font-family:'Inter',system-ui,Arial,sans-serif;
@@ -52,7 +55,9 @@ body{
 }
 img{max-width:100%;display:block}
 
-/* SIDEBAR */
+/* =========================================================
+   SIDEBAR
+========================================================= */
 #sidebar{
   position:fixed;
   left:0; top:0;
@@ -65,7 +70,6 @@ img{max-width:100%;display:block}
   flex-direction:column;
   gap:1.5rem;
   z-index:100;
-  transition:.3s;
 }
 #sidebar .logo-block{text-align:center;}
 #sidebar .logo-block img{width:90px;margin:auto;}
@@ -87,7 +91,9 @@ img{max-width:100%;display:block}
   background:var(--brand);color:#fff;
 }
 
-/* MAIN */
+/* =========================================================
+   MAIN AREA
+========================================================= */
 main{
   margin-left:270px;
   max-width:var(--container);
@@ -103,29 +109,82 @@ footer{
   font-size:.9rem;
 }
 
-/* HEADER VISUAL */
+/* =========================================================
+   HERO NUEVO – IMAGEN CEM + OVERLAY + ANIMACIÓN
+========================================================= */
 .hero{
-  background:linear-gradient(135deg, var(--brand), var(--brand-dark));
-  color:white;
-  padding:3rem 2rem;
-  border-radius:20px;
-  box-shadow:0 6px 20px rgba(0,0,0,.15);
+  position:relative;
+  width:100%;
+  height:300px;
+  border-radius:22px;
+  overflow:hidden;
   margin-top:1rem;
   margin-bottom:1rem;
-  animation:fadeIn .6s ease;
-}
-.hero h1{
-  font-size:2.2rem;
-  margin:0 0 .5rem;
-  font-weight:700;
-}
-.hero p{
-  font-size:1.15rem;
-  margin:0;
-  opacity:.9;
+  animation:heroFade .8s ease;
 }
 
-/* TARJETAS */
+/* Imagen optimizada */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('./imagenes/CEM.jpeg') center/cover no-repeat;
+  filter:brightness(0.55);
+  transform:scale(1.05);
+  transition:transform 1.2s ease;
+  will-change:transform;
+}
+
+/* Overlay institucional */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    135deg,
+    rgba(0,71,187,0.55),
+    rgba(0,40,120,0.55)
+  );
+}
+
+/* Hero hover parallax */
+.hero:hover::before{
+  transform:scale(1.12);
+}
+
+/* Texto */
+.hero-content{
+  position:relative;
+  z-index:2;
+  color:#fff;
+  padding:2.5rem;
+}
+.hero-content h1{
+  font-size:2.4rem;
+  margin:0 0 .35rem;
+  font-weight:700;
+}
+.hero-content p{
+  font-size:1.15rem;
+  margin:0;
+  opacity:.92;
+}
+
+/* Responsivo hero */
+@media(max-width:768px){
+  .hero{height:220px;}
+  .hero-content h1{font-size:1.9rem;}
+}
+
+/* Fade animation */
+@keyframes heroFade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* =========================================================
+   TARJETAS
+========================================================= */
 .card{
   background:var(--card);
   padding:1.75rem;
@@ -145,11 +204,11 @@ footer{
   transform:translateY(-3px);
   box-shadow:0 8px 22px rgba(0,0,0,.12);
 }
-.card p{
-  font-size:1.08rem;
-}
+.card p{font-size:1.08rem;}
 
-/* SECCIONES */
+/* =========================================================
+   SECCIONES
+========================================================= */
 section{display:none;}
 section.active{display:block;}
 
@@ -157,45 +216,40 @@ h2{font-size:2rem;font-weight:700;margin:1rem 0 1rem;}
 p{line-height:1.6;}
 .muted{color:var(--muted)}
 
-@keyframes fadeIn {
-  from{opacity:0; transform:translateY(20px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-/* EQUIPO GRID */
+/* =========================================================
+   EQUIPO
+========================================================= */
 .team-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
   gap:1rem;margin-top:1rem;
 }
-
 .person{
   background:var(--card);
   border-radius:14px;
-  box-shadow:var(--shadow);
   overflow:hidden;
   border:1px solid #eef0f3;
   text-align:center;
+  box-shadow:var(--shadow);
   transition:.15s ease;
 }
-
 .person:hover{
   transform:translateY(-3px);
   box-shadow:var(--shadow-lg);
 }
-
 .person .photo{
   padding:0.5rem;
 }
 .person img{
   width:100%;border-radius:8px;object-fit:cover;
 }
-
 .person .meta{padding:0.75rem;}
 .person .name{font-weight:700;margin:0 0 .25rem;}
 .person .role{color:var(--muted);font-size:0.95rem;margin:0;}
 
-/* LIGHTBOX */
+/* =========================================================
+   LIGHTBOX
+========================================================= */
 .lightbox{
   position:fixed;inset:0;background:rgba(0,0,0,.72);
   display:none;align-items:center;justify-content:center;
@@ -213,7 +267,9 @@ p{line-height:1.6;}
   padding:.4rem .6rem;cursor:pointer;
 }
 
-/* BOTÓN MÓVIL */
+/* =========================================================
+   BOTÓN MOVIL
+========================================================= */
 .sidebar-toggle{
   display:none;
   position:fixed;
@@ -228,30 +284,27 @@ p{line-height:1.6;}
 }
 
 @media(max-width:768px){
-  #sidebar{
-    transform:translateX(-260px);
-  }
-  #sidebar.open{
-    transform:translateX(0);
-  }
-  .sidebar-toggle{
-    display:block;
-  }
+  #sidebar{transform:translateX(-260px);}
+  #sidebar.open{transform:translateX(0);}
+  .sidebar-toggle{display:block;}
   main, footer{
     margin-left:0 !important;
     width:100% !important;
   }
 }
 </style>
-
 </head>
+
+
 
 <body>
 
 <!-- BOTÓN MÓVIL -->
 <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
-<!-- SIDEBAR -->
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
 <aside id="sidebar">
   <div class="logo-block">
     <img src="./imagenes/LogoTec.png" alt="Logo del Tecnológico de Monterrey">
@@ -268,13 +321,17 @@ p{line-height:1.6;}
 
 <main>
 
-<!-- INICIO -->
+<!-- =========================================================
+     SECCIÓN INICIO  (texto intacto)
+========================================================= -->
 <section id="inicio" class="active">
 
-  <!-- HEADER VISUAL -->
+  <!-- HERO NUEVO -->
   <div class="hero">
-    <h1>Aire Borrego</h1>
-    <p>Visor académico de la calidad del aire en el campus</p>
+    <div class="hero-content">
+      <h1>Aire Borrego</h1>
+      <p>Visor académico de la calidad del aire en el campus</p>
+    </div>
   </div>
 
   <h2>Bienvenido al Visor de Calidad del Aire</h2>
@@ -355,7 +412,9 @@ p{line-height:1.6;}
   </div>
 </section>
 
-<!-- ANALISIS -->
+<!-- =========================================================
+     SECCIÓN ANÁLISIS
+========================================================= -->
 <section id="analisis">
   <h2>Análisis de Calidad del Aire</h2>
 
@@ -375,7 +434,7 @@ p{line-height:1.6;}
 
   <div class="card">
     <figure>
-      <img src="./imagenes/sniffer4d.jpeg" alt="Fotografía del dispositivo Sniffer4D utilizado en las mediciones" onclick="openLightbox(this)">
+      <img src="./imagenes/sniffer4d.jpeg" alt="Fotografía del dispositivo Sniffer4D utilizado en las mediciones" onclick="openLightbox(this)" loading="lazy">
       <figcaption class="center">
         <b>Sniffer4D</b> — Sistema portátil de monitoreo para mediciones de gases en tiempo real.
       </figcaption>
@@ -390,7 +449,9 @@ p{line-height:1.6;}
   </div>
 </section>
 
-<!-- PROPÓSITO -->
+<!-- =========================================================
+     SECCIÓN PROPÓSITO
+========================================================= -->
 <section id="proposito">
   <h2>Nuestro Propósito</h2>
   <div class="card">
@@ -459,7 +520,9 @@ p{line-height:1.6;}
   </div>
 </section>
 
-<!-- CRÉDITOS -->
+<!-- =========================================================
+     SECCIÓN CRÉDITOS
+========================================================= -->
 <section id="creditos">
   <h2>Créditos</h2>
 
@@ -539,7 +602,7 @@ function toggleSidebar(){
   document.getElementById("sidebar").classList.toggle("open");
 }
 
-/* Cambiar sección + marcar menú activo */
+/* Cambio de secciones */
 function showSection(id){
   document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -556,24 +619,20 @@ function openLightbox(img){
   document.getElementById('lightbox-img').src = img.src;
   document.getElementById('lightbox').classList.add('open');
 }
-
 function closeLightbox(){
   document.getElementById('lightbox').classList.remove('open');
   document.getElementById('lightbox-img').src="";
 }
 
-/* Scroll animations para tarjetas */
+/* Animación al hacer scroll */
 const cards = document.querySelectorAll(".card");
-
 function revealCards(){
   const trigger = window.innerHeight * 0.92;
-
   cards.forEach(card=>{
     const top = card.getBoundingClientRect().top;
     if(top < trigger) card.classList.add("visible");
   });
 }
-
 window.addEventListener("scroll", revealCards);
 window.addEventListener("load", revealCards);
 </script>
