@@ -8,483 +8,575 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --brand:#0047bb;
-      --bg:#f9fafb;
-      --card:#fff;
-      --text:#333;
-      --muted:#555;
-      --shadow:0 2px 6px rgba(0,0,0,.1);
-      --shadow-lg:0 4px 10px rgba(0,0,0,.08);
-      --radius:16px;
-      --container:1100px;
-    }
+<style>
+/* VARIABLES */
+:root{
+  --brand:#0047bb;
+  --brand-dark:#003b9c;
+  --bg:#f9fafb;
+  --card:#ffffff;
+  --text:#333;
+  --muted:#666;
+  --shadow:0 2px 6px rgba(0,0,0,.1);
+  --shadow-lg:0 4px 14px rgba(0,0,0,.15);
+  --radius:18px;
+  --container:1400px;
+}
 
-    *{box-sizing:border-box;}
-    body{
-      font-family:'Inter',system-ui,Arial,sans-serif;
-      margin:0;background:var(--bg);color:var(--text);
-    }
-    img{max-width:100%;display:block}
+/* DARK MODE AUTOMÁTICO */
+@media (prefers-color-scheme: dark) {
+  :root{
+    --bg:#0d1117;
+    --card:#161b22;
+    --text:#e6edf3;
+    --muted:#9ba7b5;
+    --shadow:0 0 0 rgba(0,0,0,0);
+    --shadow-lg:0 0 0 rgba(0,0,0,0);
+  }
 
-    /* NAVBAR */
-    nav{
-      position:sticky;top:0;z-index:50;
-      display:flex;justify-content:space-between;align-items:center;
-      padding:1rem 1.5rem;background:#fff;box-shadow:var(--shadow);
-    }
-    nav h1{font-size:1.5rem;color:var(--brand);font-weight:700;margin:0}
-    nav ul{
-      display:flex;list-style:none;gap:1.25rem;
-      margin:0;padding:0;transition:all .3s ease;
-    }
-    nav li{
-      cursor:pointer;font-weight:600;
-      transition:color .2s;
-    }
-    nav li:hover{color:var(--brand)}
+  #sidebar{ background:#161b22; }
+  #sidebar .menu li{ background:#161b22; color:#ddd; }
+  #sidebar .menu li.active{ background:var(--brand); color:#fff; }
 
-    /* HAMBURGER MENU */
-    .hamburger{
-      display:none;
-      cursor:pointer;
-      width:32px;height:22px;
-      flex-direction:column;
-      justify-content:space-between;
-      background:none;border:none;padding:0;
-    }
-    .hamburger span{
-      width:100%;height:4px;background:var(--brand);
-      border-radius:4px;transition:.3s ease;
-    }
-    .hamburger.active span:nth-child(1){
-      transform:translateY(9px) rotate(45deg);
-    }
-    .hamburger.active span:nth-child(2){
-      opacity:0;
-    }
-    .hamburger.active span:nth-child(3){
-      transform:translateY(-9px) rotate(-45deg);
-    }
+  .card{
+    border:1px solid #1f2630;
+  }
+}
 
-    main{max-width:var(--container);margin:0 auto;padding:1.75rem 1rem;}
-    section{display:none;}
-    section.active{display:block;animation:fadeIn .45s ease;}
+/* GENERAL */
+*{box-sizing:border-box;}
+body{
+  font-family:'Inter',system-ui,Arial,sans-serif;
+  margin:0;background:var(--bg);color:var(--text);
+  scroll-behavior:smooth;
+}
+img{max-width:100%;display:block}
 
-    h2{font-size:2rem;font-weight:700;margin:.25rem 0 1rem;}
-    p{line-height:1.6;font-size:1.05rem;}
-    .muted{color:var(--muted)}
+/* SIDEBAR */
+#sidebar{
+  position:fixed;
+  left:0; top:0;
+  width:250px;
+  height:100vh;
+  background:#fff;
+  box-shadow:var(--shadow-lg);
+  padding:1.5rem 1rem;
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  z-index:100;
+  transition:.3s;
+}
+#sidebar .logo-block{text-align:center;}
+#sidebar .logo-block img{width:90px;margin:auto;}
+#sidebar h2{font-size:1.4rem;color:var(--brand);margin:0;}
 
-    .card{
-      background:var(--card);padding:1.25rem;border-radius:var(--radius);
-      box-shadow:var(--shadow-lg);margin-top:1rem;
-    }
+#sidebar .menu{
+  list-style:none;padding:0;margin:0;
+  display:flex;flex-direction:column;gap:.75rem;
+}
+#sidebar .menu li{
+  padding:.75rem 1rem;border-radius:10px;
+  cursor:pointer;font-weight:600;color:var(--text);
+  transition:.2s;
+}
+#sidebar .menu li:hover{
+  background:#e8f0ff;color:var(--brand);
+}
+#sidebar .menu li.active{
+  background:var(--brand);color:#fff;
+}
 
-    .button{
-      display:inline-block;margin-top:.75rem;padding:.65rem 1rem;
-      background:var(--brand);color:#fff;text-decoration:none;
-      font-weight:600;border-radius:10px;box-shadow:var(--shadow);
-      transition:transform .08s ease;
-    }
-    .button:hover{transform:translateY(-1px)}
+/* MAIN */
+main{
+  margin-left:270px;
+  max-width:var(--container);
+  width:calc(100% - 270px);
+  padding:2rem 2.5rem;
+}
+footer{
+  margin-left:270px;
+  width:calc(100% - 270px);
+  padding:2rem;
+  text-align:center;
+  color:#6b7280;
+  font-size:.9rem;
+}
 
-    @keyframes fadeIn{
-      from{opacity:0;transform:translateY(8px)}
-      to{opacity:1;transform:translateY(0)}
-    }
+/* HEADER VISUAL */
+.hero{
+  background:linear-gradient(135deg, var(--brand), var(--brand-dark));
+  color:white;
+  padding:3rem 2rem;
+  border-radius:20px;
+  box-shadow:0 6px 20px rgba(0,0,0,.15);
+  margin-top:1rem;
+  margin-bottom:1rem;
+  animation:fadeIn .6s ease;
+}
+.hero h1{
+  font-size:2.2rem;
+  margin:0 0 .5rem;
+  font-weight:700;
+}
+.hero p{
+  font-size:1.15rem;
+  margin:0;
+  opacity:.9;
+}
 
-    footer{
-      max-width:var(--container);margin:2rem auto 2.5rem;
-      padding:0 1rem;color:#6b7280;font-size:.9rem;
-      text-align:center;
-    }
+/* TARJETAS */
+.card{
+  background:var(--card);
+  padding:1.75rem;
+  border-radius:var(--radius);
+  border:1px solid #e3e6ee;
+  margin-top:1.5rem;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  transition:all .2s ease;
+  opacity:0;
+  transform:translateY(25px);
+}
+.card.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 22px rgba(0,0,0,.12);
+}
+.card p{
+  font-size:1.08rem;
+}
 
-    /* GRID DEL EQUIPO */
-    .team-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-      gap:1rem;margin-top:1rem;
-    }
-    .person{
-      background:#fff;border-radius:14px;box-shadow:var(--shadow);
-      overflow:hidden;border:1px solid #eef0f3;text-align:center;
-      transition:.15s ease;
-    }
-    .person:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-    .person .photo{
-      background:#fff;display:flex;align-items:center;justify-content:center;
-      padding:0.5rem;
-    }
-    .person img{object-fit:contain;width:100%;height:auto;border-radius:8px;}
-    .person .meta{padding:0.75rem;}
-    .person .name{font-weight:700;margin:0 0 .25rem;}
-    .person .role{color:var(--muted);font-size:0.95rem;margin:0;}
+/* SECCIONES */
+section{display:none;}
+section.active{display:block;}
 
-    /* GALERÍA */
-    .gallery{
-      display:grid;gap:1rem;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      margin-top:1rem;
-    }
-    figure img{
-      border-radius:12px;border:1px solid #eef0f3;
-      box-shadow:var(--shadow);cursor:pointer;
-      transition:transform .12s ease;
-    }
+h2{font-size:2rem;font-weight:700;margin:1rem 0 1rem;}
+p{line-height:1.6;}
+.muted{color:var(--muted)}
 
-    /* LIGHTBOX */
-    .lightbox{
-      position:fixed;inset:0;background:rgba(0,0,0,.72);
-      display:none;align-items:center;justify-content:center;
-      padding:1rem;z-index:1000;
-    }
-    .lightbox.open{display:flex}
-    .lightbox img{
-      max-width:min(100%,1000px);max-height:85vh;border-radius:12px;
-      background:#fff;
-      box-shadow:0 10px 30px rgba(0,0,0,.4);
-    }
+@keyframes fadeIn {
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
 
-    .close{
-      position:absolute;top:12px;right:16px;font-size:1.4rem;
-      background:#fff;border:none;border-radius:999px;
-      padding:.4rem .6rem;cursor:pointer;box-shadow:var(--shadow);
-    }
+/* EQUIPO GRID */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:1rem;margin-top:1rem;
+}
 
-    /* RESPONSIVE */
-    @media(max-width:768px){
-      .hamburger{display:flex;}
-      nav ul{display:none;width:100%;flex-direction:column;align-items:center;margin-top:.7rem;}
-      nav ul.open{display:flex;}
-      .team-grid{grid-template-columns:1fr;}
-    }
+.person{
+  background:var(--card);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid #eef0f3;
+  text-align:center;
+  transition:.15s ease;
+}
 
-  </style>
+.person:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-lg);
+}
+
+.person .photo{
+  padding:0.5rem;
+}
+.person img{
+  width:100%;border-radius:8px;object-fit:cover;
+}
+
+.person .meta{padding:0.75rem;}
+.person .name{font-weight:700;margin:0 0 .25rem;}
+.person .role{color:var(--muted);font-size:0.95rem;margin:0;}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;inset:0;background:rgba(0,0,0,.72);
+  display:none;align-items:center;justify-content:center;
+  padding:1rem;z-index:1000;
+}
+.lightbox.open{display:flex}
+.lightbox img{
+  max-width:min(100%,1000px);
+  max-height:85vh;border-radius:12px;
+}
+.close{
+  position:absolute;top:12px;right:16px;
+  font-size:1.4rem;
+  background:#fff;border:none;border-radius:999px;
+  padding:.4rem .6rem;cursor:pointer;
+}
+
+/* BOTÓN MÓVIL */
+.sidebar-toggle{
+  display:none;
+  position:fixed;
+  top:1rem; left:1rem;
+  z-index:200;
+  background:var(--brand);
+  color:#fff;
+  border:none;
+  padding:.6rem .8rem;
+  border-radius:8px;
+  font-size:1.3rem;
+}
+
+@media(max-width:768px){
+  #sidebar{
+    transform:translateX(-260px);
+  }
+  #sidebar.open{
+    transform:translateX(0);
+  }
+  .sidebar-toggle{
+    display:block;
+  }
+  main, footer{
+    margin-left:0 !important;
+    width:100% !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <h1>Aire Borrego</h1>
+<!-- BOTÓN MÓVIL -->
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
-    <button class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-
-    <ul id="main-menu">
-      <li onclick="showSection('inicio')">Inicio</li>
-      <li onclick="showSection('analisis')">Análisis</li>
-      <li onclick="showSection('proposito')">Propósito</li>
-      <li onclick="showSection('creditos')">Créditos</li>
-      <li onclick="showSection('iniciativa')">Iniciativa</li>
-      <li onclick="showSection('equipo')">Equipo</li>
-    </ul>
-  </nav>
-
-  <main>
-
-    <!-- Inicio -->
-    <section id="inicio" class="active">
-      <h2>Bienvenido al Visor de Calidad del Aire</h2>
-      <div class="card">  
-        <p>
-          Este proyecto escolar muestra cómo varía la calidad del aire en distintas zonas del campus
-          durante el periodo analizado. Encontrarás visualizaciones interactivas, umbrales de referencia
-          y hallazgos clave explicados en lenguaje claro.
-        </p>
-        <p class="muted">
-          Tip: en la sección <b>Análisis</b> abre el dashboard para explorar por <i>Gas</i>, <i>Día</i> y <i>Periodo</i>.
-        </p>
-      </div>
-    </section>
-
-    <!-- Análisis -->
-    <section id="analisis">
-      <h2>Análisis de Calidad del Aire</h2>
-
-      <div class="card">
-        <h3 style="margin:0">Dashboard interactivo</h3>
-        <p>
-          Abre el dashboard completo (barras, heatmap de zonas, KPIs y guía) en otra pestaña.
-          Usa los menús superiores para cambiar <b>Gas</b>, <b>Día</b> y <b>Periodo</b>.
-        </p>
-        <a href="dashboard_sniffer.html" target="_self" rel="noopener" class="button">Abrir dashboard</a>
-        <p class="muted" style="margin-top:.75rem;">
-          Nota: las graficas estan pensadas para verlas desde la computadora.
-        </p>
-      </div>
-    </section>
-
-    <!-- Propósito -->
-    <section id="proposito">
-      <h2>Nuestro Propósito</h2>
-      <div class="card">
-        <p>
-          El propósito de este proyecto es concientizar sobre la importancia de la calidad del aire en espacios educativos.
-          Analizamos datos recolectados en distintas zonas y periodos para identificar oportunidades de mejora
-          y proponer acciones simples como ventilación o ajustes operativos.
-        </p>
-        <p class="muted">Los umbrales de referencia ayudan a interpretar los niveles observados como Aceptable, Atención o Alto.</p>
-      </div>
-    </section>
-
-    <!-- Créditos -->
-    <section id="creditos">
-      <h2>Créditos</h2>
-
-      <div class="card">
-        <h3 style="margin-top:0">Agradecimientos y colaboración institucional</h3>
-        <p style="text-align:justify;">
-          Este proyecto contó con la participación, apoyo y acompañamiento académico del 
-          <b>Tecnológico de Monterrey</b> y la <b>Universidad Autónoma del Estado de Hidalgo (UAEH)</b>, 
-          así como la colaboración del <b>Dr. Sócrates López Pérez</b> en la facilitación del equipo 
-          de medición <i>Sniffer4D</i>.
-        </p>
-
-        <div class="team-grid">
-
-          <!-- Logo del Tecnológico de Monterrey -->
-          <article class="person">
-            <div class="photo">
-              <img src="./imagenes/Logotec2.png" alt="Logo del Tecnológico de Monterrey">
-            </div>
-            <div class="meta">
-              <p class="name">
-                <a href="https://tec.mx" target="_blank" rel="noopener">
-                  Tecnológico de Monterrey
-                </a>
-              </p>
-              <p class="role">Institución académica • Campus Estado de México</p>
-            </div>
-          </article>
-
-          <!-- Universidad Autónoma del Estado de Hidalgo -->
-          <article class="person">
-            <div class="photo">
-              <img src="./imagenes/uaehLogo.png" alt="Logo de la Universidad Autónoma del Estado de Hidalgo">
-            </div>
-            <div class="meta">
-              <p class="name">
-                <a href="https://www.uaeh.edu.mx/" target="_blank" rel="noopener">
-                  Universidad Autónoma del Estado de Hidalgo
-                </a>
-              </p>
-              <p class="role">Colaboración institucional</p>
-            </div>
-          </article>
-
-          <!-- Dr. Sócrates López Pérez -->
-          <article class="person">
-            <div class="photo">
-              <img src="./imagenes/Socrates.jpeg" alt="Retrato del Dr. Sócrates López Pérez">
-            </div>
-            <div class="meta">
-              <p class="name">
-                <a href="https://www.uaeh.edu.mx/campus/icshu/nucleo-academico/socrates-lopez.html"
-                  target="_blank" rel="noopener">
-                  Dr. Sócrates López Pérez
-                </a>
-              </p>
-              <p class="role">Colaborador y préstamo del Sniffer4D</p>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN NUEVA: INICIATIVA -->
-    <section id="iniciativa">
-      <h2>Iniciativa · Aire Borrego</h2>
-
-    <div class="card">
-      <h3 style="margin-top:0">Presentación de la iniciativa</h3>
-      <p style="text-align:justify;">
-        <b>Aire Borrego</b> es una iniciativa interdisciplinaria del Tecnológico de Monterrey que integra 
-        mediciones en tiempo real, análisis de datos y visualización interactiva para comprender la 
-        calidad del aire en el campus. Su propósito es promover ambientes más saludables, generar 
-        conciencia sobre los contaminantes atmosféricos y fomentar la toma de decisiones informadas 
-        para el bienestar de la comunidad estudiantil.
-      </p>
-    </div>
-
-    <!-- Objetivo -->
-    <div class="card">
-      <h3 style="margin-top:0">Objetivo general</h3>
-      <p style="text-align:justify;">
-        Evaluar y comunicar de manera clara la variación de la calidad del aire en distintas zonas del 
-        campus a través de la recolección de datos con el sistema <b>Sniffer4D</b>, su análisis mediante 
-        herramientas de ciencias de datos y el desarrollo de un visor digital accesible para la 
-        comunidad universitaria.
-      </p>
-    </div>
-
-    <!-- Alcance -->
-    <div class="card">
-      <h3 style="margin-top:0">Alcance del proyecto</h3>
-      <ul style="line-height:1.7; text-align:justify; margin-left:1rem;">
-        <li>Mediciones de CO₂, CO, NO₂ y PM₂.5 en distintos puntos del campus.</li>
-        <li>Registro en diferentes horarios y periodos académicos para observar variabilidad temporal.</li>
-        <li>Procesamiento de datos, limpieza y normalización mediante herramientas analíticas.</li>
-        <li>Construcción de un dashboard interactivo para facilitar la consulta de los resultados.</li>
-        <li>Difusión de hallazgos y recomendaciones mediante una página informativa accesible.</li>
-      </ul>
-    </div>
-
-    <!-- Actividades realizadas -->
-    <div class="card">
-      <h3 style="margin-top:0">Actividades realizadas</h3>
-      <ul style="line-height:1.7; text-align:justify; margin-left:1rem;">
-        <li>Diseño del plan de muestreo y rutas dentro del campus.</li>
-        <li>Recolección de datos utilizando el dispositivo <b>Sniffer4D</b>.</li>
-        <li>Procesamiento, filtrado y segmentación de datos por zonas, periodos y contaminantes.</li>
-        <li>Desarrollo del visor web y dashboard interactivo.</li>
-        <li>Interpretación de hallazgos y elaboración de mensajes clave de impacto ambiental.</li>
-      </ul>
-    </div>
-
-    <!-- Resultados -->
-    <div class="card">
-      <h3 style="margin-top:0">Resultados y hallazgos iniciales</h3>
-      <p style="text-align:justify;">
-        Las mediciones registradas muestran patrones identificables asociados a horarios de mayor 
-        actividad dentro del campus, así como diferencias notables entre zonas abiertas, áreas 
-        cerradas y puntos de alta afluencia estudiantil. Estos hallazgos permiten identificar 
-        oportunidades de mejora, como reforzar la ventilación en ciertas áreas, promover 
-        actividades al aire libre o considerar ajustes operativos en zonas con picos de concentración.
-      </p>
-    </div>
-
-    <!-- Equipo -->
-    <div class="card">
-      <h3 style="margin-top:0">Equipo de trabajo del Tecnológico de Monterrey</h3>
-      <p class="muted">
-        Coordinación, asesoría académica, análisis de datos y desarrollo del visor.
-      </p>
-
-      <div class="team-grid">
-
-        <!-- Persona 1 -->
-        <article class="person">
-          <div class="photo">
-            <img src="./imagenes/Andres.PNG" alt="Retrato del Dr. Andrés David García García">
-          </div>
-          <div class="meta">
-            <p class="name">Dr. Andrés David García García</p>
-            <p class="role">
-              Decano de la Escuela de Diseño, Ingeniería y Arquitectura.<br>
-              Campus Estado de México.
-            </p>
-          </div>
-        </article>
-
-        <!-- Persona 2 -->
-        <article class="person">
-          <div class="photo">
-            <img src="./imagenes/Brenda.png" alt="Retrato de la Dra. Brenda García Farrera">
-          </div>
-          <div class="meta">
-            <p class="name">Dra. Brenda García Farrera</p>
-            <p class="role">
-              Directora de Departamento de Ingeniería.<br>
-              Campus Estado de México.
-            </p>
-          </div>
-        </article>
-
-        <!-- Persona 3 -->
-        <article class="person">
-          <div class="photo">
-            <img src="./imagenes/Karthik.jpg" alt="Retrato del Dr. Venkata Krishna Karthik Tangirala">
-          </div>
-          <div class="meta">
-            <p class="name">Dr. Venkata Krishna Karthik Tangirala</p>
-            <p class="role">
-              Profesor Investigador y Asesor principal del proyecto.<br>
-              Campus Estado de México.
-            </p>
-          </div>
-        </article>
-
-        <!-- Persona 4 -->
-        <article class="person">
-          <div class="photo">
-            <img src="./imagenes/SaulA.jpg" alt="Retrato de Saúl Alfredo Nieto Becerril">
-          </div>
-          <div class="meta">
-            <p class="name">Saúl Alfredo Nieto Becerril</p>
-            <p class="role">
-              Estudiante de Ingeniería en Ciencias de Datos y Matemáticas.<br>
-              Responsable de análisis, visualización y desarrollo del visor.
-            </p>
-          </div>
-        </article>
-      </div>
-    </div>
-    </section>
-    <!-- EQUIPO -->
-    <section id="equipo">
-      <h2 style="margin-top:0">Equipo de medición</h2>
-
-      <div class="card">
-        <figure>
-          <img src="./imagenes/sniffer4d.jpeg" alt="Fotografía del dispositivo Sniffer4D utilizado en las mediciones" onclick="openLightbox(this)">
-          <figcaption class="center">
-            <b>Sniffer4D</b> — Sistema portátil de monitoreo para mediciones de gases en tiempo real.
-          </figcaption>
-        </figure>
-      
-
-      <p style="margin-top:.75rem; text-align:justify;">
-        Este dispositivo permitió registrar variaciones de contaminantes atmosféricos como CO₂, 
-        CO, NO₂ y PM₂.5 en recorridos por distintas zonas del campus. Su precisión y capacidad 
-        de registro continuo lo convierten en una herramienta ideal para estudios ambientales 
-        dentro de espacios educativos.
-      </p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    Fuente de datos: Sniffer4D · Proyecto académico del Tecnológico de Monterrey.
-  </footer>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
-    <button class="close" onclick="closeLightbox()">✕</button>
-    <img id="lightbox-img">
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="logo-block">
+    <img src="./imagenes/LogoTec.png" alt="Logo del Tecnológico de Monterrey">
+    <h2>Aire Borrego</h2>
   </div>
 
-  <script>
-    /* Menú hamburguesa */
-    function toggleMenu(){
-      document.querySelector('.hamburger').classList.toggle('active');
-      document.getElementById('main-menu').classList.toggle('open');
-    }
+  <ul class="menu">
+    <li onclick="showSection('inicio')" id="m-inicio" class="active">Inicio</li>
+    <li onclick="showSection('proposito')" id="m-proposito">Propósito</li>
+    <li onclick="showSection('analisis')" id="m-analisis">Análisis</li>
+    <li onclick="showSection('creditos')" id="m-creditos">Créditos</li>
+  </ul>
+</aside>
 
-    /* Cambiar sección */
-    function showSection(id){
-      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      window.scrollTo({top:0, behavior:'smooth'});
-      document.getElementById('main-menu').classList.remove('open');
-      document.querySelector('.hamburger').classList.remove('active');
-    }
+<main>
 
-    /* Lightbox */
-    function openLightbox(img){
-      const lb=document.getElementById('lightbox');
-      const lbImg=document.getElementById('lightbox-img');
-      lbImg.src=img.src;
-      lb.classList.add('open');
-    }
-    function closeLightbox(){
-      document.getElementById('lightbox').classList.remove('open');
-      document.getElementById('lightbox-img').src="";
-    }
-  </script>
+<!-- INICIO -->
+<section id="inicio" class="active">
+
+  <!-- HEADER VISUAL -->
+  <div class="hero">
+    <h1>Aire Borrego</h1>
+    <p>Visor académico de la calidad del aire en el campus</p>
+  </div>
+
+  <h2>Bienvenido al Visor de Calidad del Aire</h2>
+
+  <div class="card">  
+    <p>
+      Este proyecto escolar muestra cómo varía la calidad del aire en distintas zonas del campus
+      durante el periodo analizado. Encontrarás visualizaciones interactivas, umbrales de referencia
+      y hallazgos clave explicados en lenguaje claro.
+    </p>
+    <p class="muted">
+      Tip: en la sección <b>Análisis</b> abre el dashboard para explorar por <i>Gas</i>, <i>Día</i> y <i>Periodo</i>.
+    </p>
+  </div>
+
+  <!-- EQUIPO -->
+  <div class="card">
+    <h3 style="margin-top:0">Equipo de trabajo del Tecnológico de Monterrey</h3>
+    <p class="muted">
+      Coordinación, asesoría académica, análisis de datos y desarrollo del visor.
+    </p>
+
+    <div class="team-grid">
+
+      <article class="person">
+        <div class="photo">
+          <img src="./imagenes/Andres.PNG" alt="Retrato del Dr. Andrés David García García">
+        </div>
+        <div class="meta">
+          <p class="name">Dr. Andrés David García García</p>
+          <p class="role">
+            Decano de la Escuela de Diseño, Ingeniería y Arquitectura.<br>
+            Campus Estado de México.
+          </p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="photo">
+          <img src="./imagenes/Brenda.png" alt="Retrato de la Dra. Brenda García Farrera">
+        </div>
+        <div class="meta">
+          <p class="name">Dra. Brenda García Farrera</p>
+          <p class="role">
+            Directora de Departamento de Ingeniería.<br>
+            Campus Estado de México.
+          </p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="photo">
+          <img src="./imagenes/Karthik.jpg" alt="Retrato del Dr. Venkata Krishna Karthik Tangirala">
+        </div>
+        <div class="meta">
+          <p class="name">Dr. Venkata Krishna Karthik Tangirala</p>
+          <p class="role">
+            Profesor Investigador y Asesor principal del proyecto.<br>
+            Campus Estado de México.
+          </p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="photo">
+          <img src="./imagenes/SaulA.jpg" alt="Retrato de Saúl Alfredo Nieto Becerril">
+        </div>
+        <div class="meta">
+          <p class="name">Saúl Alfredo Nieto Becerril</p>
+          <p class="role">
+            Estudiante de Ingeniería en Ciencias de Datos y Matemáticas.<br>
+            Responsable de análisis, visualización y desarrollo del visor.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ANALISIS -->
+<section id="analisis">
+  <h2>Análisis de Calidad del Aire</h2>
+
+  <div class="card">
+    <h3 style="margin:0">Dashboard interactivo</h3>
+    <p>
+      Abre el dashboard completo (barras, heatmap de zonas, KPIs y guía) en otra pestaña.
+      Usa los menús superiores para cambiar <b>Gas</b>, <b>Día</b> y <b>Periodo</b>.
+    </p>
+    <a href="dashboard_sniffer.html" target="_self" rel="noopener" class="button">Abrir dashboard</a>
+    <p class="muted" style="margin-top:.75rem;">
+      Nota: las graficas estan pensadas para verlas desde la computadora.
+    </p>
+  </div>
+
+  <h2 style="margin-top:0">Equipo de medición</h2>
+
+  <div class="card">
+    <figure>
+      <img src="./imagenes/sniffer4d.jpeg" alt="Fotografía del dispositivo Sniffer4D utilizado en las mediciones" onclick="openLightbox(this)">
+      <figcaption class="center">
+        <b>Sniffer4D</b> — Sistema portátil de monitoreo para mediciones de gases en tiempo real.
+      </figcaption>
+    </figure>
+
+    <p style="margin-top:.75rem; text-align:justify;">
+      Este dispositivo permitió registrar variaciones de contaminantes atmosféricos como CO₂, 
+      CO, NO₂ y PM₂.5 en recorridos por distintas zonas del campus. Su precisión y capacidad 
+      de registro continuo lo convierten en una herramienta ideal para estudios ambientales 
+      dentro de espacios educativos.
+    </p>
+  </div>
+</section>
+
+<!-- PROPÓSITO -->
+<section id="proposito">
+  <h2>Nuestro Propósito</h2>
+  <div class="card">
+    <p>
+      El propósito de este proyecto es concientizar sobre la importancia de la calidad del aire en espacios educativos.
+      Analizamos datos recolectados en distintas zonas y periodos para identificar oportunidades de mejora
+      y proponer acciones simples como ventilación o ajustes operativos.
+    </p>
+    <p class="muted">Los umbrales de referencia ayudan a interpretar los niveles observados como Aceptable, Atención o Alto.</p>
+  </div>
+
+  <h2>Iniciativa · Aire Borrego</h2>
+
+  <div class="card">
+    <h3 style="margin-top:0">Presentación de la iniciativa</h3>
+    <p style="text-align:justify;">
+      <b>Aire Borrego</b> es una iniciativa interdisciplinaria del Tecnológico de Monterrey que integra 
+      mediciones en tiempo real, análisis de datos y visualización interactiva para comprender la 
+      calidad del aire en el campus. Su propósito es promover ambientes más saludables, generar 
+      conciencia sobre los contaminantes atmosféricos y fomentar la toma de decisiones informadas 
+      para el bienestar de la comunidad estudiantil.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Objetivo general</h3>
+    <p style="text-align:justify;">
+      Evaluar y comunicar de manera clara la variación de la calidad del aire en distintas zonas del 
+      campus a través de la recolección de datos con el sistema <b>Sniffer4D</b>, su análisis mediante 
+      herramientas de ciencias de datos y el desarrollo de un visor digital accesible para la 
+      comunidad universitaria.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Alcance del proyecto</h3>
+    <ul style="line-height:1.7; text-align:justify; margin-left:1rem;">
+      <li>Mediciones de CO₂, CO, NO₂ y PM₂.5 en distintos puntos del campus.</li>
+      <li>Registro en diferentes horarios y periodos académicos para observar variabilidad temporal.</li>
+      <li>Procesamiento de datos, limpieza y normalización mediante herramientas analíticas.</li>
+      <li>Construcción de un dashboard interactivo para facilitar la consulta de los resultados.</li>
+      <li>Difusión de hallazgos y recomendaciones mediante una página informativa accesible.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Actividades realizadas</h3>
+    <ul style="line-height:1.7; text-align:justify; margin-left:1rem;">
+      <li>Diseño del plan de muestreo y rutas dentro del campus.</li>
+      <li>Recolección de datos utilizando el dispositivo <b>Sniffer4D</b>.</li>
+      <li>Procesamiento, filtrado y segmentación de datos por zonas, periodos y contaminantes.</li>
+      <li>Desarrollo del visor web y dashboard interactivo.</li>
+      <li>Interpretación de hallazgos y elaboración de mensajes clave de impacto ambiental.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Resultados y hallazgos iniciales</h3>
+    <p style="text-align:justify;">
+      Las mediciones registradas muestran patrones identificables asociados a horarios de mayor 
+      actividad dentro del campus, así como diferencias notables entre zonas abiertas, áreas 
+      cerradas y puntos de alta afluencia estudiantil. Estos hallazgos permiten identificar 
+      oportunidades de mejora, como reforzar la ventilación en ciertas áreas, promover 
+      actividades al aire libre o considerar ajustes operativos en zonas con picos de concentración.
+    </p>
+  </div>
+</section>
+
+<!-- CRÉDITOS -->
+<section id="creditos">
+  <h2>Créditos</h2>
+
+  <div class="card">
+    <h3 style="margin-top:0">Agradecimientos y colaboración institucional</h3>
+    <p style="text-align:justify;">
+      Este proyecto contó con la participación, apoyo y acompañamiento académico del 
+      <b>Tecnológico de Monterrey</b> y la <b>Universidad Autónoma del Estado de Hidalgo (UAEH)</b>, 
+      así como la colaboración del <b>Dr. Sócrates López Pérez</b> en la facilitación del equipo 
+      de medición <i>Sniffer4D</i>.
+    </p>
+
+    <div class="team-grid">
+
+      <article class="person">
+        <div class="photo">
+          <img src="./imagenes/Logotec2.png" alt="Logo del Tecnológico de Monterrey">
+        </div>
+        <div class="meta">
+          <p class="name">
+            <a href="https://tec.mx" target="_blank" rel="noopener">
+              Tecnológico de Monterrey
+            </a>
+          </p>
+          <p class="role">Institución académica • Campus Estado de México</p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="photo">
+          <img src="./imagenes/uaehLogo.png" alt="Logo de la Universidad Autónoma del Estado de Hidalgo">
+        </div>
+        <div class="meta">
+          <p class="name">
+            <a href="https://www.uaeh.edu.mx/" target="_blank" rel="noopener">
+              Universidad Autónoma del Estado de Hidalgo
+            </a>
+          </p>
+          <p class="role">Colaboración institucional</p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="photo">
+          <img src="./imagenes/Socrates.jpeg" alt="Retrato del Dr. Sócrates López Pérez">
+        </div>
+        <div class="meta">
+          <p class="name">
+            <a href="https://www.uaeh.edu.mx/campus/icshu/nucleo-academico/socrates-lopez.html"
+              target="_blank" rel="noopener">
+              Dr. Sócrates López Pérez
+            </a>
+          </p>
+          <p class="role">Colaborador y préstamo del Sniffer4D</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Fuente de datos: Sniffer4D · Proyecto académico del Tecnológico de Monterrey.
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img">
+</div>
+
+<script>
+/* Sidebar móvil */
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+/* Cambiar sección + marcar menú activo */
+function showSection(id){
+  document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll("#sidebar .menu li").forEach(li => li.classList.remove("active"));
+  document.getElementById("m-"+id).classList.add("active");
+
+  window.scrollTo({top:0, behavior:'smooth'});
+  document.getElementById("sidebar").classList.remove("open");
+}
+
+/* Lightbox */
+function openLightbox(img){
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lightbox-img').src="";
+}
+
+/* Scroll animations para tarjetas */
+const cards = document.querySelectorAll(".card");
+
+function revealCards(){
+  const trigger = window.innerHeight * 0.92;
+
+  cards.forEach(card=>{
+    const top = card.getBoundingClientRect().top;
+    if(top < trigger) card.classList.add("visible");
+  });
+}
+
+window.addEventListener("scroll", revealCards);
+window.addEventListener("load", revealCards);
+</script>
 
 </body>
 </html>
